@@ -41,6 +41,7 @@ CREATE TABLE IF NOT EXISTS asistencia (
   AsistenciaID varchar(25) NOT NULL,
   nroDocumento varchar(25) NOT NULL,
   Curso varchar(25) NOT NULL DEFAULT 'General',
+  anotacion varchar(25),
   Fecha date NOT NULL,
   Hora time NOT NULL,
   PRIMARY KEY (AsistenciaID),
