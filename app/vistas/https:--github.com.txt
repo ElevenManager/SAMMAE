@@ -1,1 +1,0 @@
-https://github.com/ElevenManager/SAMMAE/blob/main/app/vistas/noacceso.php

@@ -1,0 +1,112 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333333; /* Texto principal oscuro */
+}
+
+.navbar-header {
+    position: relative;
+}
+
+.navbar-brand {
+    display: block;
+    padding: 30px;
+    color: #333;
+    font-weight: bold;
+}
+
+.secondary-brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: -20px; /* Ajusta este valor según sea necesario */
+    color: #ffd700; /* Texto dorado para la clase secondary-brand */
+}
+
+.navbar {
+    background-color: #ff0000; /* Fondo rojo para la barra de navegación */
+    border-color: #ff0000; /* Color del borde rojo */
+}
+
+.navbar-nav > li > a {
+    color: #ffffff; /* Texto de enlace blanco para los elementos de navegación */
+}
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li.active > a {
+    background-color: #ffffff; /* Fondo blanco en hover o active */
+    color: #ff0000; /* Texto rojo en hover o active */
+}
+
+.dropdown-menu {
+    background-color: #ffffff; /* Fondo blanco para el menú desplegable */
+    border: 1px solid #ff0000; /* Borde rojo para el menú desplegable */
+}
+
+.dropdown-menu > li > a {
+    color: #333333; /* Texto oscuro para los elementos del menú desplegable */
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #ff0000; /* Fondo rojo en hover dentro del menú desplegable */
+    color: #ffffff; /* Texto blanco en hover dentro del menú desplegable */
+}
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Contenedor principal */
+.content-wrapper {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Encabezado de la caja */
+.box-header {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Panel de bienvenida */
+#bienvenida {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de texto */
+h3 {
+    font-size: 30px;
+    text-align: center;
+    color: #555;
+}
+
+/* Estilos responsivos */
+.col-lg-6, .col-md-6, .col-sm-6, .col-xs-12 {
+    width: 100%;
+    padding: 5px;
+}
+
+@media (min-width: 768px) {
+    .col-sm-6 {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-6 {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-6 {
+        width: 50%;
+    }
+}

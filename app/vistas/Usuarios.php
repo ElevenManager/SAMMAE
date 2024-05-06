@@ -65,8 +65,10 @@ else
                                         <input type="text" class="form-control" name="id" id="id" placeholder="ID" required>
                                     </div>
                                     <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <label>Pertenecia:</label>
-                                        <input type="text" class="form-control" name="pertenecia" id="pertenecia" placeholder="Pertenecia" required>
+                                        <label>DNI:</label>
+                                        <select class="form-control" name="dni" id="dni" required>
+                                            <!-- Opciones se cargarán dinámicamente aquí -->
+                                        </select>
                                     </div>
                                     <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                         <label>Nombre:</label>
@@ -84,16 +86,16 @@ else
                                         <label>Login:</label>
                                         <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
                                     </div>
-                                    <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <div class="form-estadoconteiner">
                                         <label>Estado:</label>
-                                        <select class="form-control" name="estado" id="estado" required>
+                                        <select class="form-estado" name="estado" id="estado">
                                             <option value="Activado">Activado</option>
                                             <option value="Desactivado">Desactivado</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <button class="btn btn-primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
-                                        <button class="btn btn-danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
+                                    <div class="form-opciones">
+                                        <button class="btn primary" type="submit" id="btnGuardar"><i class="fa fa-save"></i> Guardar</button>
+                                        <button class="btn danger" onclick="cancelarform()" type="button"><i class="fa fa-arrow-circle-left"></i> Cancelar</button>
                                     </div>
                                 </form>
                             </div>
@@ -123,7 +125,7 @@ else
     <!-- DataTables JS -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-    <script type="text/javascript" src="../../../SAMMAE/publico/js/AJAX/usuario.js"></script>
+    <script type="text/javascript" src="../../../SAMMAE/publico/js/AJAX/UsuariosF.js"></script>
     <?php
 }
 ob_end_flush();

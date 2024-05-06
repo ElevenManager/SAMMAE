@@ -103,3 +103,5 @@ CREATE TABLE IF NOT EXISTS usuario_permiso (
   FOREIGN KEY (UsuarioID) REFERENCES usuario (UsuarioID),
   FOREIGN KEY (idpermiso) REFERENCES permiso (idpermiso)
 );
+alter table usuario
+    modify clave varchar(200) not null;

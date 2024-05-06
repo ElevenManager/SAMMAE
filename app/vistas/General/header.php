@@ -1,205 +1,77 @@
-<?php
-if (strlen(session_id()) < 1) 
-  session_start();
-?>
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sistema SAMAAE | Menú</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="../public/css/font-awesome.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="../public/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../public/css/_all-skins.min.css">
-    <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
-    <link rel="shortcut icon" href="../public/img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> <!-- Bootstrap CSS -->
+    <!-- Incluir jQuery (necesario para Bootbox) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- DATATABLES -->
-    <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">    
-    <link href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet"/>
-    <link href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../../../SAMMAE/publico/css/header.css"> <!-- Tu archivo CSS personalizado -->
 
-    <link rel="stylesheet" type="text/css" href="../public/css/bootstrap-select.min.css">
-
-  </head>
-  <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
-
-      <header class="main-header">
-
-        <!-- Logo -->
-        <a href="../escritorio.php" class="logo" style="background-color: #1111">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"> <img src="img/logo_policlinico_trans.png" width="80px"> </span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"> <img src="img/logo_policlinico_trans.png" width="100px"> </span>
-        </a>
-
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top" role="navigation" style="background-color: #1111">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-            <span class="sr-only">Navegación</span>
-          </a>
-          <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <!-- Messages: style can be found in dropdown.less-->
-              
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu" >
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  
-                  <span class="hidden-xs"><?php echo $_SESSION['nombre']; ?></span>
-                </a>
-                <ul class="dropdown-menu" >
-                  <!-- User image -->
-                  <li class="user-header" style="background-color: #000;">
-                    
-                    <p>
-                      Sistema de asistencias y Administracion
-                      <small>San Jose</small>
-                    </p>
-                  </li>
-                  
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    
-                    <div class="pull-right">
-                    <!-- Cambiar -->
-                      <a href="../ajax/usuario.php?op=salir" class="btn btn-default btn-flat">Cerrar</a>
-                    </div>
-                  </li>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Encabezado (Navbar horizontal) -->
+<header class="main-header">
+    <nav class="navbar navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" >SAMAAE</a>
+                <a class="navbar-brand secondary-brand" >SanJose</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <?php
+                    // Opciones del menú basadas en permisos de usuario
+                    if ($_SESSION['escritorio'] == 1) {
+                        echo '<li><a href="../../../../SAMMAE/app/vistas/escritorio.php">Escritorio</a></li>';
+                    }
+                    if ($_SESSION['cursos_profesor'] == 1) {
+                        echo '<li><a href="Cursosprofesor.php">Cursos</a></li>';
+                    }
+                    if ($_SESSION['niveles'] == 1) {
+                        echo '<li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="../../../../SAMMAE/app/vistas/Asitencias.php">A.Asistencias</a></li>
+                                        <li><a href="../../../../SAMMAE/app/vistas/Usuarios.php">A.Usuarios</a></li>
+                                        <li><a href="../../../../SAMMAE/app/vistas/Estudiante.php">A.Estudiantes</a></li>
+                                        <li><a href="../../../../SAMMAE/app/vistas/Cursos.php">A.Cursos</a></li>
+                                        <li><a href="permisos.php">A.Permisos</a></li>
+                                    </ul>
+                                </li>';
+                    }
+                    if ($_SESSION['asistencias'] == 1) {
+                        echo '<li><a href="AsistenciaRobot.php">AsistenciaAutomatica</a></li>';
+                    }
+                    ?>
                 </ul>
-              </li>
-              
-            </ul>
-          </div>
-
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">       
-          <!-- sidebar menu: : style can be found in sidebar.less -->
-          <ul class="sidebar-menu">
-            <li class="header"></li>
-            <!-- php
-            if ($_SESSION['escritorio']==1)
-            {
-              echo '<li>
-              <a href="../escritorio.php">
-                <i class="fa fa-tasks"></i> <span>Escritorio</span>
-              </a>
-            </li>';
-            }
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <?php echo $_SESSION['NombreUsuario']; ?> <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../../../../SAMMAE/app/controladores/usuario.php?op=salir">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
 
-            php
-            if ($_SESSION['pacientes']==1)
-            {
-              echo '<li>
-              <a href="Estudiante.php">
-                <i class="fa fa-laptop"></i>
-                <span>Estudiantes</span>
-              </a>
-            </li>';
-            }
-            ?>
 
-            php
-            if ($_SESSION['Administracion']==1)
-            {
-              echo '<li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Administracion</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="configuracion.php"><i class="fa fa-circle-o"></i> Configuraciones</a></li>
-                <li><a href="servicio.php"><i class="fa fa-circle-o"></i> Servicios</a></li>
-                <li><a href="personal.php"><i class="fa fa-circle-o"></i> Personal</a></li>
-                <li><a href="permiso.php"><i class="fa fa-circle-o"></i> Permisos</a></li>
-                <li><a href="diagnostico.php"><i class="fa fa-circle-o"></i> Diagnóstico</a></li>
-              </ul>
-            </li>';
-            }
-            ?>
+<!-- JavaScript -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Incluir Bootbox -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
+<!-- Incluye tus scripts aquí -->
 
-            php
-            if ($_SESSION['atencion']==1)
-            {
-              echo '<li>
-              <a href="atencion.php">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Atención</span>
-              </a>
-            </li>';
-            }
-            ?>
-
-            php
-            if ($_SESSION['triaje']==1)
-            {
-              echo '<li>
-              <a href="triaje.php">
-                <i class="fa fa-folder"></i> <span>Triaje</span>
-              </a>
-            </li>';
-            }
-            ?>
-
-            php
-            if ($_SESSION['resultado']==1)
-            {
-              echo '<li>
-              <a href="plan.php">
-                <i class="fa fa-heartbeat"></i> <span>Plan de Atención</span>
-              </a>
-            </li>';
-            }
-            ?>-->
-
-             <!--php
-            if ($_SESSION['consultas']==1)
-            {
-              echo '<li class="treeview">
-              <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>Consultas</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="pagos.php"><i class="fa fa-circle-o"></i> Pagos</a></li>
-                <li><a href="historias.php"><i class="fa fa-circle-o"></i> Historias</a></li>
-              </ul>
-            </li>';
-            }
-            ?>-->
-
-            <li>
-              <a target="_blank" href="manual/manual_sistema.pdf">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF Manual</small>
-              </a>
-            </li>
-            <!--<li>-->
-            <!--  <a href="#">-->
-            <!--    <i class="fa fa-info-circle"></i> <span>Acerca De...</span>-->
-            <!--    <small class="label pull-right bg-yellow">IT</small>-->
-            <!--  </a>-->
-            <!--</li>-->
-                        
-          </ul>
-        </section>
-        <!-- /.sidebar -->
-      </aside>
+</body>
+</html>

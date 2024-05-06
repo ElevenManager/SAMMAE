@@ -2,63 +2,36 @@
 //Activamos el almacenamiento en el buffer
 ob_start();
 session_start();
-
-if (!isset($_SESSION["nombre"]))
+if ($_SESSION['cargas_masivas']==1)
 {
-  header("Location: login.html");
+    header("Location:Visualizacion de asistencias.html");
+}
+if (!isset($_SESSION["NombreUsuario"] ))
+{
+    header("Location: login.html");
 }
 else
-{
-require 'header.php';
+    {
+require 'General/header.php';
 
 if ($_SESSION['escritorio']==1)
+
 {
 ?>
+
+<link rel="stylesheet" href="../../publico/css/escritorio.css">
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper" id="sistema">        
+      <div class="content-wrapper" id="sistema">
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-              <div class="col-md-12">
-                  <div class="box">
-                    <div class="box-header with-border">
-                          <h1 class="box-title">Escritorio</h1>                     
-                    </div>
-                    
-                    <!-- /.box-header -->
-                    <!-- centro -->
-                    <div class="panel-body" id="listadoregistros">
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                              <table id="triaje" class="table table-striped table-bordered table-condensed table-hover">
-                                <thead>
-                                  <th style="font-size: 30px">#</th>
-                                  <th style="font-size: 30px">Paciente</th>                           
-                                </thead>
-                                <tbody>                            
-                                </tbody>
-                                
-                              </table>
-                          </div>
-                          <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                              <table id="plan" class="table table-striped table-bordered table-condensed table-hover">
-                                <thead>
-                                  <th style="font-size: 30px">#</th>
-                                  <th style="font-size: 30px">Paciente</th>                           
-                                </thead>
-                                <tbody>                            
-                                </tbody>
-                                
-                              </table>
-                          </div>
-                        </div>
-                    </div>                    
-                    <!--Fin centro -->
-                  </div><!-- /.box -->
-              </div><!-- /.col -->
-          </div><!-- /.row -->
+
+                                  <?php
+                                  session_start();
+                                  $nombreUsuario = $_SESSION["login"];
+                                  echo '<h3 style="font-size: 30px; text-align: center;">Hola '.$nombreUsuario.' </h3>';
+                                  ?>
+
       </section><!-- /.content -->
 
     </div><!-- /.content-wrapper -->
@@ -69,16 +42,12 @@ else
 {
   require 'noacceso.php';
 }
-
-
-
-require 'footer.php';
-?>
-<script type="text/javascript" src="scripts/escritorio.js"></script>
-<script>setTimeout('document.location.reload()',10000); </script>
-<?php 
 }
+
+require 'General/footer.php';
+?>
+<!--script type="text/javascript" src="scripts/escritorio.js">/script-->
+<script>setTimeout('document.location.reload()',10000); </script>
+<?php
 ob_end_flush();
 ?>
-
-

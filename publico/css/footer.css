@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    background: #f3f5f8;
+    font-family: "Euclid Circular A", "Poppins", serif;
+    color: #ffffff;
+    height: 100vh;
+}
+
+:root {
+    --color-title: #fff9ff;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 12px;
+    width: 100%;
+    background: #B53543;
+    padding-top: 60px;
+}
+
+/* Estilos para el footer */
+.main-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column-reverse;
+    gap: 8px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+
