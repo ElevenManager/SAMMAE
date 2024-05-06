@@ -1,0 +1,90 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+/* Variables de color */
+:root {
+    --Red: #B53543;
+    --White: #FFFFFF;
+}
+
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(90deg, var(--Red), var(--White) 100%);
+}
+
+/* Contenedor principal */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.login-box {
+    width: 320px;
+    background: var(--White);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px 40px;
+}
+
+/* Logo */
+.login-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-logo a {
+    text-decoration: none;
+    color: var(--Red);
+    font-size: 24px;
+}
+
+.login-logo a b {
+    color: var(--Red);
+    font-size: 36px;
+}
+
+/* Campos de entrada */
+.form-control {
+    margin-bottom: 15px;
+    border: 1px solid var(--Red);
+    border-radius: 2px;
+    padding: 5px 10px;
+}
+
+/* Botón */
+.btn-primary {
+    background-color: var(--Red);
+    color: var(--White);
+    border: 1px solid var(--Red);
+    border-radius: 2px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #DC4B48;
+    border-color: #DC4B48;
+}
+
+.btn-primary:active {
+    background-color: #B53543;
+    border-color: #B53543;
+}
+
+.fa {
+    color: #B53543; /* Color rojo */
+    border: 1px solid #B53543; /* Borde rojo */
+    border-radius: 3px; /* Borde redondeado */
+    padding: 5px; /* Espaciado interno */
+}
