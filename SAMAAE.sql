@@ -38,14 +38,14 @@ CREATE TABLE IF NOT EXISTS usuario (
 );
 
 CREATE TABLE IF NOT EXISTS asistencia (
-  AsistenciaID varchar(25) NOT NULL,
-  nroDocumento varchar(25) NOT NULL,
-  Curso varchar(25) NOT NULL DEFAULT 'General',
-  anotacion varchar(25),
-  Fecha date NOT NULL,
-  Hora time NOT NULL,
-  PRIMARY KEY (AsistenciaID),
-  FOREIGN KEY (nroDocumento) REFERENCES persona(nroDocumento)
+AsistenciaID int NOT NULL AUTO_INCREMENT,
+nroDocumento varchar(25) NOT NULL,
+Curso varchar(25) NOT NULL DEFAULT 'General',
+anotacion varchar(255),  -- Aumentado si necesitas más espacio para texto
+Fecha date NOT NULL,
+Hora time NOT NULL,
+ PRIMARY KEY (AsistenciaID),
+FOREIGN KEY (nroDocumento) REFERENCES persona(nroDocumento)
 );
 
 CREATE TABLE IF NOT EXISTS grado (

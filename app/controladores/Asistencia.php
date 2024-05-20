@@ -1,42 +1,44 @@
 <?php
+
 require_once "../modelos/Asistencia.php";
 
 $Asistencia = new Asistencia();
 
-$nroDocumento = isset($_POST["nroDocumento"]) ? $_POST["nroDocumento"] : "";
+// Obteniendo 'codigo_persona' a través de POST
+$codigo_persona = isset($_POST["codigo_persona"]) ? limpiarCadena($_POST["codigo_persona"]) : "";
 
-if (isset($_GET["op"])) {
-    switch ($_GET["op"]) {
-        case 'registrar_asistencia':
-            // Verificar si la persona existe en la base de datos
-            $persona = $Asistencia->verificar_persona($nroDocumento);
+// Verificar si 'op' está presente en la URL
+$operacion = isset($_GET['op']) ? $_GET['op'] : '';
 
-            if ($persona) {
-                date_default_timezone_set('America/Lima');
-                $fecha = date("Y-m-d");
-                $hora = date("H:i:s");
-                $curso = "Automatico";
+switch ($operacion) {
+    case 'Rasistencia':
+        // Verificar si la persona existe en la base de datos
+        $result = $Asistencia->verificar_persona($codigo_persona);
+        if ($result) {
+            date_default_timezone_set('America/Lima');
+            $fecha = date("Y-m-d");
+            $hora = date("H:i:s");
+            $curso = "Puerta";
 
-                // Determinar tipo de asistencia (entrada o salida)
-                $anotacion = "Registrado en puerta";
+            // Determinar tipo de asistencia (entrada o salida)
+            $anotacion = "Registrado";
 
-                // Registrar la asistencia
-                $rspta = $Asistencia->registrar_asistencia($nroDocumento, $anotacion);
+            // Registrar la asistencia
+            $rspta = $Asistencia->registrar_asistencia($codigo_persona, $curso, $anotacion, $fecha, $hora);
 
-                if ($rspta) {;
-                    echo '<h3><strong>Nombres:</strong> ' . $persona['Nombres'] . ' ' . $persona['Apellidos'] . '</h3><div class="alert alert-success">' . $anotacion . '</div>';
-                } else {
-                    echo 'No se pudo registrar la asistencia';
-                }
+            if ($rspta) {
+                echo '<div class="alert alert-success"> Ingreso registrado ' . $hora . '</div>';
             } else {
-                echo '<div class="alert alert-danger"><i class="icon fa fa-warning"></i> No hay Estudiante con ese codigo</div>';
+                echo 'No se pudo registrar la asistencia';
             }
-            break;
+        } else {
+            echo '<div class="alert alert-danger"><i class="icon fa fa-warning"></i> No hay Estudiante con ese código</div>';
+            echo $codigo_persona;
+        }
+        break;
 
-
-        default:
-            echo "Operación no válida";
-            break;
-    }
+    default:
+        echo "Operación no válida";
+        break;
 }
 ?>

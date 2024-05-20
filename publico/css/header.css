@@ -110,3 +110,21 @@ h3 {
         width: 50%;
     }
 }
+/* Estilos responsivos */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        display: block !important; /* Mostrar el menú colapsado en dispositivos pequeños */
+    }
+
+    .navbar-nav {
+        padding: 10px 0; /* Espaciado interno para los elementos del menú colapsado */
+    }
+
+    .navbar-nav > li {
+        display: block; /* Mostrar elementos de menú uno debajo del otro */
+    }
+
+    .navbar-nav > li > a {
+        padding: 10px 15px; /* Espaciado del texto del menú colapsado */
+    }
+}

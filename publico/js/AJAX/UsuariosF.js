@@ -41,7 +41,11 @@ function mostrarform(flag) {
         $("#btnagregar").show();
     }
 }
-
+function cancelarform()
+{
+    limpiar();
+    mostrarform(false);
+}
 // Función Listar
 function listarU() {
     tabla = $('#tbllistado').DataTable({
@@ -85,25 +89,40 @@ function guardaryeditar(e) {
 
 // Función para mostrar detalles de usuario
 function mostrar(idusuario) {
-    $.post("../../app/controladores/usuario.php?op=mostrar", { idusuario: idusuario }, function(data, status) {
-        data = JSON.parse(data);
-        mostrarform(true);
-
-        $("#id").val(data.idusuario);
-        $("#pertenecia").val(data.pertenecia);
-        $("#nombre").val(data.nombre);
-        $("#rol").val(data.rol);
-        $("#nivelid").val(data.nivelid);
-        $("#login").val(data.login);
-        $("#estado").val(data.estado);
+    // Usar $.ajax en lugar de $.post para manejar errores más fácilmente
+    $.ajax({
+        url: "../../app/controladores/usuario.php?op=mostrar",
+        type: "POST",
+        data: { idusuario: idusuario },
+        dataType: "json", // Esperamos una respuesta JSON
+        success: function(data) {
+            // Verificar si la respuesta es válida antes de procesarla
+            if (data && data.idusuario !== undefined) {
+                mostrarform(true);
+                $("#id").val(data.idusuario);
+                $("#pertenecia").val(data.pertenecia);
+                $("#nombre").val(data.nombre);
+                $("#rol").val(data.rol);
+                $("#nivelid").val(data.nivelid);
+                $("#login").val(data.login);
+                $("#estado").val(data.estado);
+            } else {
+                alert("Error: Datos de usuario no válidos");
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("Error al obtener datos del usuario. Por favor, intenta de nuevo más tarde.");
+        }
     });
 }
 
+
 // Función para desactivar registros
 function desactivar(idusuario) {
-    bootbox.confirm("¿Está seguro de desactivar el usuario?", function(result) {
+    window.confirm("¿Está seguro de desactivar el usuario?", function(result) {
         if (result) {
-            $.post("../../app/controladores/usuario.php?op=desactivar", { idusuario: idusuario }, function(e) {
+            $.post("../../app/controladores/usuario.php?op=desactivar",{ idusuario: idusuario }, function(e) {
                 window.alert(e);
                 tabla.ajax.reload();
             });
@@ -129,12 +148,13 @@ function cargarDNIs() {
         type: 'GET',
         dataType: 'json',
         success: function(response) {
+            console.log(response);
             // Limpiar las opciones actuales del select
             $('#dni').empty();
 
             // Agregar las nuevas opciones del select con los DNIs obtenidos
             $.each(response, function(index, value) {
-                $('#dni').append('<option value="' + value.nroDocumento + '">' + value.nroDocumento + '</option>');
+                $('#dni').append('<option value="' + value + '">' + value + '</option>');
             });
         },
         error: function(xhr, status, error) {
@@ -143,4 +163,5 @@ function cargarDNIs() {
         }
     });
 }
+
 init();

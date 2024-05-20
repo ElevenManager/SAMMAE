@@ -7,20 +7,29 @@ class Asistencia {
         // Constructor vacío
     }
 
-    public function verificar_persona($documento) {
-        $sql = "SELECT * FROM persona WHERE nroDocumento = ?";
+    public function verificar_persona($NroDocumento) {
+        $sql = "SELECT * FROM persona WHERE nroDocumento = '$NroDocumento'";
         // Ejecutar consulta preparada
-        return ejecutarConsultaSimpleFila($sql, array($documento));
+        $resultado = ejecutarConsulta($sql);
+
+        // Verificar si se obtuvo algún resultado
+        if ($resultado && $resultado->num_rows > 0) {
+            // Obtener el primer resultado como un array asociativo
+            $row = $resultado->fetch_assoc();
+            // Devolver los datos obtenidos
+            return $row;
+        } else {
+            // Devolver falso si no se encontraron resultados
+            return false;
+        }
     }
 
-    public function registrar_asistencia($nroDocumento, $tipoAsistencia) {
-        date_default_timezone_set('America/Lima');
-        $fecha = date("Y-m-d");
-        $hora = date("H:i:s");
-        $anotacion = "puerta general";
-        $sql = "INSERT INTO asistencia (nroDocumento, Curso, anotacion, Fecha, Hora) 
-                VALUES (?, ?, ?, ?, ?)";
-        // Ejecutar consulta preparada
-        return ejecutarConsulta($sql, array($nroDocumento, $tipoAsistencia, $anotacion, $fecha, $hora));
+
+    public function registrar_asistencia($nroDocumento, $curso, $anotacion, $fecha, $hora) {
+        $sql = "INSERT INTO asistencia (nroDocumento, curso, anotacion, Fecha , Hora) 
+		VALUES ('$nroDocumento', '$curso', '$anotacion', '$fecha', '$hora')";
+        return ejecutarConsulta($sql);
     }
 }
+
+?>

@@ -20,11 +20,11 @@
 
     <!-- Lock Screen Logo -->
     <div class="lockscreen-logo">
-        <a href="#"><b>CC</b> ASISTENCIA</a>
+        <a href="#"><b>SAMMAE</b> ASISTENCIA</a>
     </div>
 
     <!-- Lock Screen Name -->
-    <div class="lockscreen-name">ASISTENCIA</div>
+    <div class="lockscreen-name">Escanea o digita tu ID de Usuario</div>
 
     <!-- Lock Screen Form -->
     <div class="lockscreen-item">

@@ -25,3 +25,4 @@ INSERT INTO `permiso` (`idpermiso`, `nombre`) VALUES
                                                   (7, 'Niveles'),
                                                   (9, 'cursos'),
                                                   (10, 'cargas masivas');
+

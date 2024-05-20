@@ -44,7 +44,6 @@ switch ($_GET["op"]){
 
     case 'mostrar':
         $rspta=$usuario->mostrar($UsuarioID);
-        // Codificar el resultado utilizando json
         echo json_encode($rspta);
         break;
 
@@ -57,7 +56,7 @@ switch ($_GET["op"]){
         // Iterar sobre los registros obtenidos
         while ($reg = $rspta->fetch_object()) {
 
-            $acciones = '<button title="Editar" class="btnmostrar" onclick="mostrar(' . $reg->UsuarioID . ')"><i class="b"></i></button>' .
+            $acciones = '<button title="Editar" class="btn btn-warning" onclick="mostrar('.$reg->idusuario.')"><i class="fa fa-pencil"></i></button>' .
                 ' <button title="Desactivar" class="btdesactivar" onclick=" desactivar(' . $reg->UsuarioID . ')"><i class="d"></i></button>' .
                 ' <button title="Activar" class="btnactivar" onclick="activar(' . $reg->UsuarioID . ')"><i class="c"></i></button>';
 
@@ -202,8 +201,18 @@ switch ($_GET["op"]){
         case 'obtener_dniselect':
             // Llamar a la función obtenerDNIs para obtener los DNIs desde la base de datos
             $dnis = $usuario->obtenerDNIs();
-            echo json_encode($dnis); // Devolver los DNIs como respuesta JSON
+
+            // Crear un array para almacenar los DNIs de forma individual
+            $dnis_individuales = array();
+            foreach ($dnis as $dni) {
+                // Agregar cada DNI al array de forma individual
+                $dnis_individuales[] = $dni['nroDocumento'];
+            }
+
+            // Devolver los DNIs individuales como respuesta JSON
+            echo json_encode($dnis_individuales);
             break;
+
 
     case 'salir':
         // Limpiamos las variables de sesión

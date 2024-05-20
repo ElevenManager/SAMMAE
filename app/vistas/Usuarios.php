@@ -64,11 +64,12 @@ else
                                         <input type="hidden" name="idusuario" id="idusuario">
                                         <input type="text" class="form-control" name="id" id="id" placeholder="ID" required>
                                     </div>
-                                    <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <label>DNI:</label>
-                                        <select class="form-control" name="dni" id="dni" required>
+                                    <div class="form-DNI">
+                                        <label for="dni">DNI:</label>
+                                        <select class="form-DNICARGA" name="dni" id="dni" required>
                                             <!-- Opciones se cargarán dinámicamente aquí -->
                                         </select>
+
                                     </div>
                                     <div class="form-group col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                         <label>Nombre:</label>

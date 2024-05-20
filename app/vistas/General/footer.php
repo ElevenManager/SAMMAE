@@ -1,6 +1,6 @@
 <head>
     <!-- Add the link to your CSS file here -->
-    <link rel="stylesheet" href="../../../publico/css/footer.css">
+
 </head>
     <body>
         <footer class="main-footer">

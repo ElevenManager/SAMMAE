@@ -83,8 +83,8 @@ class Usuario
     // Método para mostrar los datos de un usuario específico
     public function mostrar($UsuarioID)
     {
-        $sql = "SELECT * FROM usuario u INNER JOIN persona p ON u.nroDocumento=p.nroDocumento WHERE u.UsuarioID='$UsuarioID'";
-        return ejecutarConsultaSimpleFila($sql);
+        $sql = "SELECT * FROM usuario WHERE UsuarioID='$UsuarioID'";
+        return ejecutarConsulta($sql);
     }
         // Método para listar usuarios importantes
     public function listarUsuariosImportantes()
